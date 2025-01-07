@@ -11,7 +11,8 @@ import SwiftUI
 struct ShopingListApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
+                .preferredColorScheme(.dark)
         }
     }
 }

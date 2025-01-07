@@ -6,17 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C55C4B662D2DDD2000C363AA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C55C4B602D2DDD2000C363AA /* Preview Assets.xcassets */; };
+		C55C4B672D2DDD2000C363AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C55C4B622D2DDD2000C363AA /* Assets.xcassets */; };
+		C55C4B692D2DDD2000C363AA /* ShopingListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55C4B642D2DDD2000C363AA /* ShopingListApp.swift */; };
+		C55C4B6B2D2DDD6000C363AA /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55C4B6A2D2DDD6000C363AA /* MainTabView.swift */; };
+		C55C4B6D2D2DDF2D00C363AA /* ShopingListCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55C4B6C2D2DDF2D00C363AA /* ShopingListCatalogView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		C55C4B4F2D2DDCEC00C363AA /* ShopingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C55C4B602D2DDD2000C363AA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C55C4B622D2DDD2000C363AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C55C4B642D2DDD2000C363AA /* ShopingListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopingListApp.swift; sourceTree = "<group>"; };
+		C55C4B6A2D2DDD6000C363AA /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		C55C4B6C2D2DDF2D00C363AA /* ShopingListCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopingListCatalogView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		C55C4B512D2DDCEC00C363AA /* ShopingList */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ShopingList;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C55C4B4C2D2DDCEC00C363AA /* Frameworks */ = {
@@ -32,7 +37,7 @@
 		C55C4B462D2DDCEC00C363AA = {
 			isa = PBXGroup;
 			children = (
-				C55C4B512D2DDCEC00C363AA /* ShopingList */,
+				C55C4B652D2DDD2000C363AA /* ShopingList */,
 				C55C4B502D2DDCEC00C363AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +48,34 @@
 				C55C4B4F2D2DDCEC00C363AA /* ShopingList.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C55C4B612D2DDD2000C363AA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C55C4B602D2DDD2000C363AA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C55C4B652D2DDD2000C363AA /* ShopingList */ = {
+			isa = PBXGroup;
+			children = (
+				C55C4B642D2DDD2000C363AA /* ShopingListApp.swift */,
+				C55C4B6A2D2DDD6000C363AA /* MainTabView.swift */,
+				C55C4B6E2D2DE07F00C363AA /* Views */,
+				C55C4B622D2DDD2000C363AA /* Assets.xcassets */,
+				C55C4B612D2DDD2000C363AA /* Preview Content */,
+			);
+			path = ShopingList;
+			sourceTree = "<group>";
+		};
+		C55C4B6E2D2DE07F00C363AA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C55C4B6C2D2DDF2D00C363AA /* ShopingListCatalogView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +92,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				C55C4B512D2DDCEC00C363AA /* ShopingList */,
 			);
 			name = ShopingList;
 			packageProductDependencies = (
@@ -109,6 +139,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C55C4B662D2DDD2000C363AA /* Preview Assets.xcassets in Resources */,
+				C55C4B672D2DDD2000C363AA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C55C4B692D2DDD2000C363AA /* ShopingListApp.swift in Sources */,
+				C55C4B6B2D2DDD6000C363AA /* MainTabView.swift in Sources */,
+				C55C4B6D2D2DDF2D00C363AA /* ShopingListCatalogView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +293,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -287,8 +322,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
