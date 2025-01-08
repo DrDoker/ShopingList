@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ItemListCellView: View {
-    @Binding var item: Item
+    let item: Item
+    let action: () -> Void
     
     var body: some View {
         HStack(spacing: 12) {
             Button(action: {
-                item.isCompleted.toggle()
+                action()
             }) {
                 Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
                     .imageScale(.large)
@@ -35,5 +36,7 @@ struct ItemListCellView: View {
 }
 
 #Preview {
-    ItemListCellView(item: .constant(Item(name: "Item", isCompleted: false)))
+    ItemListCellView(item: Item(name: "Item", isCompleted: false)) {
+        
+    }
 }

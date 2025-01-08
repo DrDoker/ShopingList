@@ -1,5 +1,5 @@
 //
-//  ShopingListNavigationBar.swift
+//  ShoppingListNavigationBar.swift
 //  ShopingList
 //
 //  Created by Serhii on 08.01.2025.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    func shopingListToolbar(
+    func shoppingListToolbar(
         barTitle: String = "",
         showBackButton: Bool = true,
         dismissAction: (() -> Void)? = nil
@@ -27,14 +27,13 @@ extension View {
                 if showBackButton, let dismissAction = dismissAction {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button(action: dismissAction) {
-                            HStack {
-                                Image(systemName: "chevron.left")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 12, height: 24)
-                                    .foregroundColor(.yellow)
-                            }
-                        }
+                            Image(systemName: "chevron.left")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 12, height: 24)
+                                .foregroundColor(.yellow)
+}
+                        
                     }
                 }
             }

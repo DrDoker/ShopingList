@@ -8,52 +8,83 @@
 import SwiftUI
 
 struct ItemsListView: View {
-    @ObservedObject var viewModel: ShopingListViewModel
-    
-    @State var isCompletedItemsExpanded: Bool = true
+    @ObservedObject var viewModel: ShoppingListViewModel
     
     var body: some View {
         List {
-            // MARK: - New Item Section
-            if viewModel.itemsList.map({ $0.isCompleted }).allSatisfy({ $0 }) {
-                Section {
-                    AllCompletedView()
-                }
-                .listRowSeparator(.hidden)
-            } else {
-                Section {
-                    ForEach($viewModel.itemsList) { $item in
-                        if !item.isCompleted {
-                            ItemListCellView(item: $item)
+            // MARK: - New Items Section
+            Section {
+                if viewModel.areAllItemsCompleted {
+                    EmptyActiveItemsView()
+                        .listRowSeparator(.hidden)
+                } else {
+                    ForEach(viewModel.activeItems) { item in
+                        ItemListCellView(item: item) {
+                            viewModel.updateItem(item)
                         }
-                    }
-                    .onDelete { indexSet in
-                        viewModel.deleteItem(at: indexSet)
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            deleteButton(for: item)
+                        }
                     }
                 }
             }
             
             // MARK: - Completed Items Section
-            Section(
-                header: CompletedItemsHeaderView(isExpanded: $isCompletedItemsExpanded)
-            ) {
-                ForEach($viewModel.itemsList) { $item in
-                    if isCompletedItemsExpanded {
-                        if item.isCompleted {
-                            ItemListCellView(item: $item)
+            if !viewModel.completedItems.isEmpty {
+                Section(
+                    header: CompletedItemsHeaderView(isExpanded: $viewModel.isCompletedItemsExpanded)
+                ) {
+                    if viewModel.isCompletedItemsExpanded {
+                        ForEach(viewModel.completedItems) { item in
+                            ItemListCellView(item: item) {
+                                viewModel.updateItem(item)
+                            }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                deleteButton(for: item)
+                            }
                         }
                     }
-                }
-                .onDelete { indexSet in
-                    viewModel.deleteItem(at: indexSet)
                 }
             }
         }
         .listStyle(.plain)
+        .confirmationDialog(
+            "Delete Item",
+            isPresented: $viewModel.showDeleteConfirmation,
+            titleVisibility: .visible
+        ) {
+            deleteConfirmationButtons
+        } message: {
+            Text("Are you sure you want to delete this item?")
+        }
+    }
+}
 
+extension ItemsListView {
+    // MARK: - Delete Button
+    private func deleteButton(for item: Item) -> some View {
+        Button {
+            viewModel.initiateItemDeletion(item)
+        } label: {
+            Image(systemName: "trash")
+        }
+        .tint(.red)
+    }
+    
+    // MARK: - Delete Confirmation Buttons
+    private var deleteConfirmationButtons: some View {
+        Group {
+            Button("Delete", role: .destructive) {
+                viewModel.deleteItem()
+                viewModel.cancelDeletion()
+            }
+            Button("Cancel", role: .cancel) {
+                viewModel.cancelDeletion()
+            }
+        }
     }
 }
 
 #Preview {
-    ItemsListView(viewModel: ShopingListViewModel())
+    ItemsListView(viewModel: ShoppingListViewModel())
 }

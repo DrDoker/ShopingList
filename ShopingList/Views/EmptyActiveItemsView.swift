@@ -7,12 +7,19 @@
 
 import SwiftUI
 
-struct AllCompletedView: View {
+struct EmptyActiveItemsView: View {
     var body: some View {
         VStack(spacing: 30) {
-            Text("All items are completed")
-                .foregroundColor(.gray)
-            Image(systemName: "checkmark.seal.fill")
+            VStack(spacing: 6) {
+                Text("No items")
+
+                Text("Add new items to the list")
+                    .foregroundColor(.gray)
+            }
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 30)
+
+            Image(systemName: "bubbles.and.sparkles.fill")
                 .resizable()
                 .frame(width: 70, height: 70)
                 .foregroundColor(.yellow)
@@ -23,5 +30,5 @@ struct AllCompletedView: View {
 }
 
 #Preview {
-    AllCompletedView()
+    EmptyActiveItemsView()
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShopingListView: View {
-    @StateObject var viewModel = ShopingListViewModel()
+    @StateObject var viewModel = ShoppingListViewModel()
     
     var body: some View {
         VStack {
@@ -19,7 +19,6 @@ struct ShopingListView: View {
                 .padding(.bottom, 10)
             
             ItemsListView(viewModel: viewModel)
-            
         }
         .overlay(
             VStack {
@@ -38,8 +37,8 @@ struct ShopingListView: View {
                 }
             }
         )
-        .shopingListToolbar(
-            barTitle: "Shoping List",
+        .shoppingListToolbar(
+            barTitle: "Shopping List",
             showBackButton: false
         )
     }
