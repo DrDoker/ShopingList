@@ -11,7 +11,7 @@ struct MainTabView: View {
     var body: some View {
         TabView {
             NavigationStack {
-                ShopingListCatalogView()
+                ShopingListView()
             }
             .tabItem {
                 Label("Shoping List", systemImage: "checklist")
