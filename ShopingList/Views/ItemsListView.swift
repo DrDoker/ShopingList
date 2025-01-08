@@ -20,7 +20,9 @@ struct ItemsListView: View {
                 } else {
                     ForEach(viewModel.activeItems) { item in
                         ItemListCellView(item: item) {
-                            viewModel.updateItem(item)
+                            withAnimation {
+                                viewModel.updateItem(item)
+                            }
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                             deleteButton(for: item)
@@ -37,7 +39,9 @@ struct ItemsListView: View {
                     if viewModel.isCompletedItemsExpanded {
                         ForEach(viewModel.completedItems) { item in
                             ItemListCellView(item: item) {
-                                viewModel.updateItem(item)
+                                withAnimation {
+                                    viewModel.updateItem(item)
+                                }
                             }
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 deleteButton(for: item)
@@ -75,7 +79,9 @@ extension ItemsListView {
     private var deleteConfirmationButtons: some View {
         Group {
             Button("Delete", role: .destructive) {
-                viewModel.deleteItem()
+                withAnimation {
+                    viewModel.deleteItem()
+                }
                 viewModel.cancelDeletion()
             }
             Button("Cancel", role: .cancel) {
