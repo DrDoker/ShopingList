@@ -16,7 +16,7 @@ struct ShopingListView: View {
                 .frame(height: 6)
                 .padding(.horizontal, 16)
                 .padding(.top, 10)
-                .padding(.bottom, 10)
+                .padding(.bottom, 20)
             
             ItemsListView(viewModel: viewModel)
         }
@@ -29,7 +29,7 @@ struct ShopingListView: View {
                         icon: "plus",
                         backgroundColor: .yellow,
                         action: {
-                            print("Add new item")
+                            viewModel.showNewItemSheet = true
                         }
                     )
                     .padding()
@@ -37,6 +37,11 @@ struct ShopingListView: View {
                 }
             }
         )
+        .sheet(isPresented: $viewModel.showNewItemSheet) {
+            AddNewItemView(viewModel: viewModel)
+                .presentationDetents([.height(150)])
+                .presentationCornerRadius(15)
+        }
         .shoppingListToolbar(
             barTitle: "Shopping List",
             showBackButton: false

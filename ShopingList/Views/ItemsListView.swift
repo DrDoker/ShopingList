@@ -19,7 +19,7 @@ struct ItemsListView: View {
                         .listRowSeparator(.hidden)
                 } else {
                     ForEach(viewModel.activeItems) { item in
-                        ItemListCellView(item: item) {
+                        ItemsListCellView(item: item) {
                             withAnimation {
                                 viewModel.updateItem(item)
                             }
@@ -38,7 +38,7 @@ struct ItemsListView: View {
                 ) {
                     if viewModel.isCompletedItemsExpanded {
                         ForEach(viewModel.completedItems) { item in
-                            ItemListCellView(item: item) {
+                            ItemsListCellView(item: item) {
                                 withAnimation {
                                     viewModel.updateItem(item)
                                 }
@@ -51,6 +51,7 @@ struct ItemsListView: View {
                 }
             }
         }
+        .scrollIndicators(.hidden)
         .listStyle(.plain)
         .confirmationDialog(
             "Delete Item",

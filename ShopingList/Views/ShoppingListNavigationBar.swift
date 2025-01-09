@@ -32,8 +32,7 @@ extension View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 12, height: 24)
                                 .foregroundColor(.yellow)
-}
-                        
+                        }
                     }
                 }
             }

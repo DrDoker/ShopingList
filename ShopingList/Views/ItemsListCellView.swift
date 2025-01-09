@@ -1,5 +1,5 @@
 //
-//  ItemListCellView.swift
+//  ItemsListCellView.swift
 //  ShopingList
 //
 //  Created by Serhii on 08.01.2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ItemListCellView: View {
+struct ItemsListCellView: View {
     let item: Item
     let action: () -> Void
     
@@ -17,7 +17,9 @@ struct ItemListCellView: View {
                 action()
             }) {
                 Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
-                    .imageScale(.large)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 24, height: 24)
                     .foregroundColor(.yellow)
             }
             .buttonStyle(PlainButtonStyle())
@@ -36,7 +38,7 @@ struct ItemListCellView: View {
 }
 
 #Preview {
-    ItemListCellView(item: Item(name: "Item", isCompleted: false)) {
+    ItemsListCellView(item: Item(name: "Item", isCompleted: false)) {
         
     }
 }
