@@ -7,18 +7,16 @@
 
 import Foundation
 
+@MainActor
 class ShoppingListViewModel: ObservableObject {
-    @Published var itemsList: [Item] = [
-        Item(name: "Item 1"),
-        Item(name: "Item 2"),
-        Item(name: "Item 3"),
-        Item(name: "Item 4", isCompleted: true)
-    ]
+    @Published var itemsList: [Item] = []
     @Published var isCompletedItemsExpanded = true
     @Published var showDeleteConfirmation = false
     @Published var itemToDelete: Item?
     @Published var newItemName = ""
     @Published var showNewItemSheet = false
+    
+    private let dataManager = DataManager.shared
     
     var isActivieNewItemButton: Bool {
         !newItemName.isEmpty
@@ -36,16 +34,21 @@ class ShoppingListViewModel: ObservableObject {
         itemsList.allSatisfy { $0.isCompleted }
     }
     
-    func addNewItem() {
-        let item = Item(name: newItemName)
-        itemsList.append(item)
-        newItemName = ""
+    func fetchItems() {
+        itemsList = dataManager.fetchItems()
     }
     
-    func updateItem(_ item: Item) {
-        if let index = itemsList.firstIndex(where: { $0.id == item.id }) {
-            itemsList[index].isCompleted.toggle()
-        }
+    func addNewItem() {
+        let item = Item(name: newItemName)
+        dataManager.saveItem(item)
+        newItemName = ""
+        fetchItems()
+    }
+    
+    func toggleItemCompletion(_ item: Item) {
+        item.isCompleted.toggle()
+        dataManager.update()
+        fetchItems()
     }
     
     func initiateItemDeletion(_ item: Item) {
@@ -58,8 +61,9 @@ class ShoppingListViewModel: ObservableObject {
     }
     
     func deleteItem() {
-        if let item = itemToDelete, let index = itemsList.firstIndex(where: { $0.id == item.id }) {
-            itemsList.remove(at: index)
+        if let item = itemToDelete {
+            dataManager.deleteItem(item)
+            fetchItems()
         }
     }
     

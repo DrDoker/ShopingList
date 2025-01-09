@@ -21,7 +21,7 @@ struct ItemsListView: View {
                     ForEach(viewModel.activeItems) { item in
                         ItemsListCellView(item: item) {
                             withAnimation {
-                                viewModel.updateItem(item)
+                                viewModel.toggleItemCompletion(item)
                             }
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -40,7 +40,7 @@ struct ItemsListView: View {
                         ForEach(viewModel.completedItems) { item in
                             ItemsListCellView(item: item) {
                                 withAnimation {
-                                    viewModel.updateItem(item)
+                                    viewModel.toggleItemCompletion(item)
                                 }
                             }
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -53,6 +53,9 @@ struct ItemsListView: View {
         }
         .scrollIndicators(.hidden)
         .listStyle(.plain)
+        .onAppear {
+            viewModel.fetchItems()
+        }
         .confirmationDialog(
             "Delete Item",
             isPresented: $viewModel.showDeleteConfirmation,
