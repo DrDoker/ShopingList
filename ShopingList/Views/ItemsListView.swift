@@ -19,14 +19,15 @@ struct ItemsListView: View {
                         .listRowSeparator(.hidden)
                 } else {
                     ForEach(viewModel.activeItems) { item in
-                        ItemsListCellView(item: item) {
-                            withAnimation {
-                                viewModel.toggleItemCompletion(item)
+                        ItemsListCellView(item: item)
+                            .onTapGesture {
+                                withAnimation {
+                                    viewModel.toggleItemCompletion(item)
+                                }
                             }
-                        }
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            deleteButton(for: item)
-                        }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                deleteButton(for: item)
+                            }
                     }
                 }
             }
@@ -38,14 +39,15 @@ struct ItemsListView: View {
                 ) {
                     if viewModel.isCompletedItemsExpanded {
                         ForEach(viewModel.completedItems) { item in
-                            ItemsListCellView(item: item) {
-                                withAnimation {
-                                    viewModel.toggleItemCompletion(item)
+                            ItemsListCellView(item: item)
+                                .onTapGesture {
+                                    withAnimation {
+                                        viewModel.toggleItemCompletion(item)
+                                    }
                                 }
-                            }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                deleteButton(for: item)
-                            }
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    deleteButton(for: item)
+                                }
                         }
                     }
                 }
