@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class ShoppingListViewModel: ObservableObject {
@@ -60,8 +61,8 @@ class ShoppingListViewModel: ObservableObject {
         itemToDelete = nil
     }
     
-    func deleteItem() {
-        if let item = itemToDelete {
+    func deleteItem(item: Item?) {
+        if let item = item {
             dataManager.deleteItem(item)
             fetchItems()
         }

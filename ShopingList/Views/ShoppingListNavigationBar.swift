@@ -11,7 +11,8 @@ extension View {
     func shoppingListToolbar(
         barTitle: String = "",
         showBackButton: Bool = true,
-        dismissAction: (() -> Void)? = nil
+        dismissAction: (() -> Void)? = nil,
+        showEditButton: Bool = false
     ) -> some View {
         self.navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
@@ -33,6 +34,12 @@ extension View {
                                 .frame(width: 12, height: 24)
                                 .foregroundColor(.yellow)
                         }
+                    }
+                }
+                
+                if showEditButton {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
                     }
                 }
             }

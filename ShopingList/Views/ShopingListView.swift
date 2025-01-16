@@ -44,7 +44,8 @@ struct ShopingListView: View {
         }
         .shoppingListToolbar(
             barTitle: "Shopping List",
-            showBackButton: false
+            showBackButton: false,
+            showEditButton: !viewModel.itemsList.isEmpty
         )
     }
 }

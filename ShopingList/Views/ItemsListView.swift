@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ItemsListView: View {
     @ObservedObject var viewModel: ShoppingListViewModel
+    @Environment(\.editMode) var editMode
     
     var body: some View {
         List {
@@ -19,15 +20,19 @@ struct ItemsListView: View {
                         .listRowSeparator(.hidden)
                 } else {
                     ForEach(viewModel.activeItems) { item in
-                        ItemsListCellView(item: item)
-                            .onTapGesture {
-                                withAnimation {
-                                    viewModel.toggleItemCompletion(item)
-                                }
+                        ItemsListCellView(item: item) {
+                            withAnimation {
+                                viewModel.deleteItem(item: item)
                             }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                deleteButton(for: item)
+                        }
+                        .onTapGesture {
+                            withAnimation {
+                                viewModel.toggleItemCompletion(item)
                             }
+                        }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            deleteButton(for: item)
+                        }
                     }
                 }
             }
@@ -39,15 +44,19 @@ struct ItemsListView: View {
                 ) {
                     if viewModel.isCompletedItemsExpanded {
                         ForEach(viewModel.completedItems) { item in
-                            ItemsListCellView(item: item)
-                                .onTapGesture {
-                                    withAnimation {
-                                        viewModel.toggleItemCompletion(item)
-                                    }
+                            ItemsListCellView(item: item) {
+                                withAnimation {
+                                    viewModel.deleteItem(item: item)
                                 }
-                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    deleteButton(for: item)
+                            }
+                            .onTapGesture {
+                                withAnimation {
+                                    viewModel.toggleItemCompletion(item)
                                 }
+                            }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                deleteButton(for: item)
+                            }
                         }
                     }
                 }
@@ -66,6 +75,9 @@ struct ItemsListView: View {
             deleteConfirmationButtons
         } message: {
             Text("Are you sure you want to delete this item?")
+        }
+        .onChange(of: viewModel.itemsList.isEmpty) {
+            self.editMode?.wrappedValue = .inactive
         }
     }
 }
@@ -86,7 +98,7 @@ extension ItemsListView {
         Group {
             Button("Delete", role: .destructive) {
                 withAnimation {
-                    viewModel.deleteItem()
+                    viewModel.deleteItem(item: viewModel.itemToDelete)
                 }
                 viewModel.cancelDeletion()
             }
