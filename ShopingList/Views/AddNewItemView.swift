@@ -10,6 +10,7 @@ import SwiftUI
 struct AddNewItemView: View {
     @ObservedObject var viewModel: ShoppingListViewModel
     @FocusState private var isFocused: Bool
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ScrollView {
@@ -48,6 +49,11 @@ struct AddNewItemView: View {
         }
         .onDisappear {
             viewModel.newItemName = ""
+        }
+        .onChange(of: isFocused) {
+            if !isFocused {
+                dismiss() 
+            }
         }
     }
 }
